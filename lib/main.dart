@@ -10,6 +10,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //wow
-    return MaterialApp();
+    return const MaterialApp(
+      home: Scaffold(
+        body: Center(child: Text("Might is Right , Jis Ki Latti Uski Bhens"
+        , style: TextStyle(fontSize: 30, fontFamily: 'Coralcandyregulardemo',fontStyle: FontStyle.italic),),),
+      ),
+    );
   }
 }
