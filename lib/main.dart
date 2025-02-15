@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:social_media/auth%20page/loginPage.dart';
 
 
 void main() {
@@ -11,17 +12,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     //wow
     return MaterialApp(
-      home: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset("assets/Oval.png"),
-
-            const Center(child: Text("Might is Right , Jis Ki Latti Uski Bhens"
-            , style: TextStyle(fontSize: 30, fontFamily: 'SFPRODISPLAYREGULAR',fontStyle: FontStyle.italic),),),
-          ],
-        ),
+      debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.light,
+      theme: ThemeData(
+        textButtonTheme: TextButtonThemeData(style: ButtonStyle(textStyle: WidgetStatePropertyAll(TextStyle(fontFamily: "SFPRODISPLAYREGULAR"))))
       ),
+      home: login_page(),
     );
   }
 }
