@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:social_media/auth%20page/loginPage.dart';
+import 'package:provider/provider.dart';
+import 'package:social_media/pages/homescreen.dart';
+import 'package:social_media/providers.dart';
 
 
 void main() {
-  runApp(const MyApp());
+  
+  runApp(ChangeNotifierProvider(create: (context) => prove(), child: MyApp(),));
 }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -13,11 +16,8 @@ class MyApp extends StatelessWidget {
     //wow
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.light,
-      theme: ThemeData(
-        textButtonTheme: TextButtonThemeData(style: ButtonStyle(textStyle: WidgetStatePropertyAll(TextStyle(fontFamily: "SFPRODISPLAYREGULAR"))))
-      ),
-      home: login_page(),
+      
+      home:home_scr(),
     );
   }
 }

@@ -13,14 +13,13 @@ class inputer extends StatelessWidget {
           fillColor: Colors.grey.shade200,
           filled: true,
             constraints: BoxConstraints(maxWidth: 350, maxHeight: 45),
-            border: OutlineInputBorder(
-              borderSide: BorderSide(width: .1, color: Colors.grey),
-                borderRadius: BorderRadius.circular(8)),
+            enabledBorder: OutlineInputBorder(borderSide: BorderSide(width: .2,color: Colors.grey)),
                 focusedBorder: OutlineInputBorder(borderSide: BorderSide(width: .1), ),
-                hintText: nameOf
+                hintText: nameOf ,
+                hintStyle: TextStyle(color: Colors.grey.shade400)
                 ),
                 cursorColor: Colors.grey,
-                textAlignVertical: TextAlignVertical.top,
+                textAlignVertical: TextAlignVertical.center,
       ),
     );
   }
