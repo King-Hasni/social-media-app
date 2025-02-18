@@ -13,7 +13,7 @@ class home_body extends StatelessWidget {
         itemBuilder: (context, index) {
         return Column(
         children: [
-          Divider(
+          const Divider(
             thickness: .5,
           ),
           Padding(
@@ -28,7 +28,7 @@ class home_body extends StatelessWidget {
                       scale: 1.6,
                     ),
                     const Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Column(
                         children: [
                           Text("Name"),
@@ -38,11 +38,11 @@ class home_body extends StatelessWidget {
                     ),
                   ],
                 ),
-                IconButton(onPressed: () {}, icon: Icon(Icons.more_horiz))
+                IconButton(onPressed: () {}, icon: const Icon(Icons.more_horiz))
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Dots_test(

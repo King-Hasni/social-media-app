@@ -32,7 +32,7 @@ class _Dots_testState extends State<Dots_test> {
             ],
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         

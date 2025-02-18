@@ -7,14 +7,14 @@ class inputer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 20),
       child: TextField(
         decoration: InputDecoration(
           fillColor: Colors.grey.shade200,
           filled: true,
-            constraints: BoxConstraints(maxWidth: 350, maxHeight: 45),
-            enabledBorder: OutlineInputBorder(borderSide: BorderSide(width: .2,color: Colors.grey)),
-                focusedBorder: OutlineInputBorder(borderSide: BorderSide(width: .1), ),
+            constraints: const BoxConstraints(maxWidth: 350, maxHeight: 45),
+            enabledBorder: const OutlineInputBorder(borderSide: BorderSide(width: .2,color: Colors.grey)),
+                focusedBorder: const OutlineInputBorder(borderSide: BorderSide(width: .1), ),
                 hintText: nameOf ,
                 hintStyle: TextStyle(color: Colors.grey.shade400)
                 ),

@@ -8,33 +8,33 @@ class login_page extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
+        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.arrow_back_ios)),
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 100,
             ),
             Image.asset(
               'assets/Instagram Logo.png',
               scale: 2,
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             inputer(
               nameOf: "User name",
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             inputer(
               nameOf: "Password",
             ),
             Padding(
-              padding: EdgeInsets.only(left: 200),
+              padding: const EdgeInsets.only(left: 200),
               child: TextButton(
                   onPressed: () {},
                   child: Text(
@@ -44,7 +44,7 @@ class login_page extends StatelessWidget {
             ),
             Container(
                 width: 340,
-                margin: EdgeInsets.symmetric(horizontal: 35, vertical: 15),
+                margin: const EdgeInsets.symmetric(horizontal: 35, vertical: 15),
                 decoration: BoxDecoration(
                     color: Colors.lightBlue,
                     borderRadius: BorderRadius.circular(7)),
@@ -57,7 +57,7 @@ class login_page extends StatelessWidget {
                           fontSize: 20,
                           fontFamily: "SFPRODISPLAYREGULAR"),
                     ))),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             TextButton.icon(
@@ -71,24 +71,24 @@ class login_page extends StatelessWidget {
                 scale: 40,
               ),
             ),
-            Row(
+            const Row(
               children: [
                 Expanded(child: Divider(color: Colors.grey,thickness: .45,)),
                 Padding(
-                  padding: const EdgeInsets.all(18),
+                  padding: EdgeInsets.all(18),
                   child: Text("OR"),
                 ),
                 Expanded(child: Divider(color: Colors.grey, thickness: .45,)),
               ],
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             RichText(text: const TextSpan(children: [
               TextSpan(text: "Don't have an account? " , style: TextStyle(color: Colors.grey , fontSize: 16)),
               TextSpan(text: "Sign up." , style: TextStyle(color: Colors.lightBlue, fontSize: 17))
             ])),
-            SizedBox(height: 90,),
-            Divider(thickness: .45,),
-            TextButton(onPressed: (){}, child: Text("Instagram or Facebook", style: TextStyle(color: Colors.grey),))
+            const SizedBox(height: 90,),
+            const Divider(thickness: .45,),
+            TextButton(onPressed: (){}, child: const Text("Instagram or Facebook", style: TextStyle(color: Colors.grey),))
           ],
         ),
       ),

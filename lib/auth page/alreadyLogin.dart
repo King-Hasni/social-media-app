@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:social_media/auth%20page/auth_handler.dart';
+import 'package:social_media/pages/homescreen.dart';
 
 class already_login extends StatelessWidget {
   const already_login({super.key});
@@ -9,11 +11,11 @@ class already_login extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 220,
           ),
           Container(
-            margin: EdgeInsets.all(50),
+            margin: const EdgeInsets.all(50),
             child: Image.asset(
               "assets/Instagram Logo.png",
               scale: 2,
@@ -26,7 +28,7 @@ class already_login extends StatelessWidget {
                 "assets/Oval.png",
                 scale: 2,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               const Text(
@@ -36,12 +38,17 @@ class already_login extends StatelessWidget {
           )),
           Container(
               width: 340,
-              margin: EdgeInsets.symmetric(horizontal: 35, vertical: 15),
+              margin: const EdgeInsets.symmetric(horizontal: 35, vertical: 15),
               decoration: BoxDecoration(
                   color: Colors.lightBlue,
                   borderRadius: BorderRadius.circular(7)),
               child: TextButton(
-                  onPressed: () {},
+                  onPressed: () async{
+                    await auth_handler.instance.google_sign().whenComplete((){
+                      print("wow");
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => home_scr(),));
+                    });
+                  },
                   child: const Text(
                     "Login",
                     style: TextStyle(
@@ -57,8 +64,8 @@ class already_login extends StatelessWidget {
                     color: Colors.lightBlue, fontWeight: FontWeight.w600 , fontSize: 15),
               )),
           
-          SizedBox(height: 170,),
-          Divider(),
+          const SizedBox(height: 170,),
+          const Divider(),
           RichText(text: const TextSpan(children: [
             TextSpan(text: "Don't have an account? " , style: TextStyle(color: Colors.grey , fontSize: 14)),
             TextSpan(text: "Sign up." , style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold , fontSize: 15))
