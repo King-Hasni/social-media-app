@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:social_media/pages/selectedUser.dart';
 import 'package:social_media/providers.dart';
 
 class search extends StatefulWidget {
@@ -41,7 +43,7 @@ class _searchState extends State<search> {
     return Scaffold(
       appBar: PreferredSize(preferredSize: Size(double.maxFinite, 120), child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 50),
-        child: context.watch<prove>().hasData == true ? Row(
+        child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         TextField(
@@ -53,7 +55,7 @@ class _searchState extends State<search> {
             }
           },
           onTap: () {
-            print(allItems);
+            context.read<prove>().hasData = true;
           },
           onChanged: (value) {
             searchforIt(value);
@@ -78,21 +80,24 @@ class _searchState extends State<search> {
         ),
         Icon(Icons.add)
       ],
-    ) : null,
+    ) ,
       )),
-      body: FutureBuilder(future: FirebaseFirestore.instance.collection("users").get(), builder: (context, snapshot) {
+      body: StreamBuilder(stream: FirebaseFirestore.instance.collection("users").snapshots(), builder: (context, snapshot) {
         if(snapshot.hasData){
           
             var yehy = snapshot.data!.docs.map((e) => e.data(),).toList();
             allItems = yehy;
 
-            context.read<prove>().hasData = true;
+            //context.read<prove>().hasData = true;
             return ListView.builder(
               itemCount: _searchedItems.length,
               itemBuilder: (context, index) {
               var items = yehy[index];
-
-              return ListTile(
+              print("g");
+              return  ListTile(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => selected_user(fetcher: items),));
+                },
                 leading: Icon(Icons.image),
                 tileColor: Colors.grey.shade100,
                 shape: OutlineInputBorder(borderRadius: BorderRadius.circular(30) , borderSide: BorderSide(width: 0.01, )),
@@ -104,7 +109,7 @@ class _searchState extends State<search> {
         }
         else{
           context.read<prove>().hasData = false;
-          return Text("Nope");
+          return Text("");
         }
       },),
     );

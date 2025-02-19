@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:social_media/auth%20page/auth_handler.dart';
@@ -31,7 +32,7 @@ class home_scr extends StatelessWidget {
         IconButton(onPressed: (){}, icon: Image.asset("assets/Messanger.png" ,scale: 1,))],
       ) : null,
       body: yeHy == 0 ? StreamBuilder(stream: FirebaseFirestore.instance.collection("users").where(
-        "user" , isEqualTo: "imamkaleem47@gmail.com"
+        "uid" , isEqualTo: FirebaseAuth.instance.currentUser!.uid.toString()
       ).snapshots(), builder: (context, snapshot) {
         if(snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: LinearProgressIndicator(),);

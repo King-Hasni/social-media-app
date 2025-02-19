@@ -75,7 +75,7 @@ class profile extends StatelessWidget {
             Column(
               children: [
                 Text(
-                  fetcher["followers"]!.toString(),
+                  fetcher["followers"].length!.toString(),
                   style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
                 ),
                 const Text(
@@ -87,7 +87,7 @@ class profile extends StatelessWidget {
             Column(
               children: [
                 Text(
-                  fetcher["following"]!.toString(),
+                  fetcher["following"].length!.toString(),
                   style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
                 ),
                 const Text(
@@ -107,8 +107,8 @@ class profile extends StatelessWidget {
                 fetcher["name"]!,
                 style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
               ),
-              const Text(
-                "this is king hasni, game developer",
+              Text(
+                fetcher["user"],
                 style: TextStyle(fontSize: 15),
               ),
             ],
@@ -125,9 +125,11 @@ class profile extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8)),
             child: TextButton(
                 onPressed: () {
-                  auth_handler.instance.signout().whenComplete(() {
-                    Navigator.pop(context.watch<prove>().context);
-                  },);
+                  print(fetcher["uid"]);
+                  print(FirebaseAuth.instance.currentUser!.uid.toString());
+                  // auth_handler.instance.signout().whenComplete(() {
+                  //   Navigator.pop(context.watch<prove>().context);
+                  // },);
                 },
                 child: const Text(
                   "Edit Profile",
