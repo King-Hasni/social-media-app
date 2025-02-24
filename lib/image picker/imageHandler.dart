@@ -37,21 +37,23 @@ class image_Handler{
       String cloudName = 'ddzl716mr';
       String uploadPreset = "instagram-clone";
      
-      String uri = "https://api.cloudinary.com/v1_1/$cloudName/file/upload";
+      String uri = "https://api.cloudinary.com/v1_1/$cloudName/image/upload";
 
-      final response = http.MultipartRequest("POST",Uri.parse(uri));
-      final filePut = await http.MultipartFile.fromPath("file" , file);
-      response.files.add(filePut);
-      response.fields["upload_preset"] = uploadPreset;
-      print("wow");
-
-     final send = await response.send();
-
-      print("step 3");
-      var converit = await send.stream.bytesToString();
+      var response = http.MultipartRequest("POST",Uri.parse(uri))
+      ..fields["upload_preset"] = uploadPreset
+      ..files.add(await http.MultipartFile.fromPath("file", file));
+      
+     var send = await response.send();
+     var converit = await send.stream.bytesToString();
 
       var yehy = jsonDecode(converit);
+      
+      print("step 3");
+      print(yehy);
+      print(send.statusCode);
       if(send.statusCode == 200){
+        
+        print("successful");
         return yehy['secure_url'];
       }
 

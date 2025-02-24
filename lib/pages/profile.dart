@@ -16,8 +16,8 @@ class profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Map<String,dynamic> fetcher = context.watch<prove>().data;
-    String wow = fetcher["profile"];//context.read<prove>().data["profile"];
-    print(wow);
+    String wow = fetcher["profile"] != null ? fetcher["profile"] : "";//context.read<prove>().data["profile"];
+    print("this is the link :  $wow");
     return Scaffold(
       appBar: AppBar(
         title: Padding(
@@ -45,6 +45,7 @@ class profile extends StatelessWidget {
 
             IconButton(onPressed: () async{
                 await image_Handler.instance.pickImage().then((value) async {
+                  print(value);
                   final yehy = await image_Handler.instance.uploadProfile(value);
                   
                   final yeHyG = await FirebaseFirestore.instance.collection("users").
@@ -53,10 +54,11 @@ class profile extends StatelessWidget {
                   await FirebaseFirestore.instance.collection("users").doc(yeHyG.docs.first.id).update({
                     "profile": yehy,
                   });
+                  context.read<prove>().data["profile"] = yehy;
                 },);
               },
               //icon: Icon(Icons.image),
-               icon : wow.isNotEmpty ? Image.file(File(fetcher["profile"]) , fit: BoxFit.cover,) : Icon(Icons.image),
+               icon : wow.isNotEmpty ? Image.network(wow , scale: 2,) : Icon(Icons.image),
                ),
 
 
@@ -75,7 +77,7 @@ class profile extends StatelessWidget {
             Column(
               children: [
                 Text(
-                  fetcher["followers"].length!.toString(),
+                  fetcher["followers"].toString().length > 1 ? fetcher["followers"].length!.toString() : "0",
                   style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
                 ),
                 const Text(
@@ -87,7 +89,7 @@ class profile extends StatelessWidget {
             Column(
               children: [
                 Text(
-                  fetcher["following"].length!.toString(),
+                  fetcher["following"].toString().length > 1 ? fetcher["following"].length!.toString() : "0",
                   style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
                 ),
                 const Text(
@@ -124,12 +126,11 @@ class profile extends StatelessWidget {
                 border: Border.all(color: Colors.grey, width: .7),
                 borderRadius: BorderRadius.circular(8)),
             child: TextButton(
-                onPressed: () {
-                  print(fetcher["uid"]);
-                  print(FirebaseAuth.instance.currentUser!.uid.toString());
-                  // auth_handler.instance.signout().whenComplete(() {
-                  //   Navigator.pop(context.watch<prove>().context);
-                  // },);
+                onPressed: (){
+                  
+                  auth_handler.instance.signout().whenComplete(() {
+                    Navigator.pop(context.watch<prove>().context);
+                  },);
                 },
                 child: const Text(
                   "Edit Profile",

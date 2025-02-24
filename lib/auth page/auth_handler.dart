@@ -19,7 +19,15 @@ class auth_handler{
 
       final OAuthCredential  cred = GoogleAuthProvider.credential(idToken: auth.idToken, accessToken: auth.accessToken);
 
+
+
+
+
       final yehy =  await FirebaseAuth.instance.signInWithCredential(cred).then((value) async{
+        var check = await FirebaseFirestore.instance.collection("users").doc().get();
+        var take = check.data();
+        if(take != null && take["uid"] != FirebaseAuth.instance.currentUser!.uid.toString()){
+          
         await FirebaseFirestore.instance.collection("users").add(
           {"user" : request.email,
           "name": request.displayName,
@@ -31,6 +39,9 @@ class auth_handler{
           "uid" : FirebaseAuth.instance.currentUser!.uid,
           }
         );
+        }
+
+        
         print('wow');
       },);
       

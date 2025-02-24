@@ -23,7 +23,7 @@ class _searchState extends State<search> {
   void searchforIt(String value) {
     if (value.isNotEmpty) {
       setState(() {
-        
+        // sirf or sirf email search kro
       _searchedItems = allItems.where((element) => element.keys.any((element) => element.toLowerCase().contains(value.toLowerCase()),) ||
                                                     element.values.any((element) => element.toString().toLowerCase().contains(value.toLowerCase()),),).toList();
       });
@@ -92,9 +92,12 @@ class _searchState extends State<search> {
             return ListView.builder(
               itemCount: _searchedItems.length,
               itemBuilder: (context, index) {
-              var items = yehy[index];
-              print("g");
-              return  ListTile(
+
+              
+            
+              var items = _searchedItems[index];
+
+              return items["user"] != FirebaseAuth.instance.currentUser!.email.toString() ? ListTile(
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => selected_user(fetcher: items),));
                 },
@@ -104,7 +107,7 @@ class _searchState extends State<search> {
                 title: Text(items["name"].toString()),
                 subtitle: Text(items["user"]),
               
-              );
+              ) : null;
             },);
         }
         else{

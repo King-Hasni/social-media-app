@@ -118,7 +118,8 @@ class _selected_userState extends State<selected_user> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     //Image.asset("assets/Oval.pngs"),
-                    Icon(Icons.image),
+                    
+                    widget.fetcher["profile"].toString().isNotEmpty ? Image.network(widget.fetcher["profile"] , scale: 2,) : Icon(Icons.image),
 
                     const Column(
                       children: [

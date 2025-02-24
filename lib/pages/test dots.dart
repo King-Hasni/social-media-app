@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class Dots_test extends StatefulWidget {
   PageController controller = PageController(initialPage: 0);
-
-  Dots_test({super.key , required this.controller});
+  final String imageLink;
+  Dots_test({super.key , required this.controller , required this.imageLink});
 
   @override
   State<Dots_test> createState() => _Dots_testState();
@@ -25,8 +25,8 @@ class _Dots_testState extends State<Dots_test> {
             },
             controller: widget.controller,
             children: [
-              Image.asset(
-                "assets/Rectangle.png",
+              Image.network(
+                widget.imageLink,
                 fit: BoxFit.fitWidth,
               ),
             ],

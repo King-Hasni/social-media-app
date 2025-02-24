@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:social_media/auth%20page/auth_handler.dart';
 import 'package:social_media/pages/homeBody.dart';
+import 'package:social_media/pages/messageScreen.dart';
+import 'package:social_media/pages/photoscreen.dart';
 import 'package:social_media/pages/profile.dart';
 import 'package:social_media/pages/search.dart';
 import 'package:social_media/providers.dart';
@@ -12,7 +14,7 @@ import 'package:social_media/providers.dart';
 class home_scr extends StatelessWidget {
   home_scr({super.key});
   List<String> status = ["Profile Image (1).png" , "Inner Oval.png", "Profile Image1.png", "Profile Image (2).png"];
-  List navScreens = [search() , profile()];
+  List navScreens = [search() , photo() , profile()];
   
   @override
   Widget build(BuildContext context){
@@ -29,7 +31,10 @@ class home_scr extends StatelessWidget {
           child: Image.asset("assets/Instagram Logo.png" , scale: 3,alignment: Alignment.center,),
         ),
         actions: [IconButton(onPressed: (){}, icon: Image.asset("assets/IGTV.png",scale: 1,)),
-        IconButton(onPressed: (){}, icon: Image.asset("assets/Messanger.png" ,scale: 1,))],
+        IconButton(onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context) => msgScr(),));
+          print("wow");
+        }, icon: Image.asset("assets/Messanger.png" ,scale: 1,))],
       ) : null,
       body: yeHy == 0 ? StreamBuilder(stream: FirebaseFirestore.instance.collection("users").where(
         "uid" , isEqualTo: FirebaseAuth.instance.currentUser!.uid.toString()
@@ -48,7 +53,7 @@ class home_scr extends StatelessWidget {
             wow = element;
           }
           context.read<prove>().add(wow);
-          
+          //print(wow);
           return body(yeHy);
         }
       },):  navScreens[yeHy - 1],
@@ -58,6 +63,7 @@ class home_scr extends StatelessWidget {
         items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home_filled) , label: "Home" , backgroundColor: Colors.white , ),
         BottomNavigationBarItem(icon: Icon(Icons.search_outlined), label: "Search"),
+        BottomNavigationBarItem(icon: Icon(Icons.add_a_photo), label: "add photo"),
         BottomNavigationBarItem(icon: Icon(Icons.image), label: "Profile"),
       ],
       currentIndex: context.watch<prove>().current,
